@@ -53,7 +53,6 @@ public class Torch extends Activity {
       try {
         mCamera = Camera.open();
       } catch (RuntimeException e) {
-        Log.i(TAG, "Camera.open() failed: " + e.getMessage());
       }
     }
   }
@@ -93,8 +92,6 @@ public class Torch extends Activity {
     }
 
     String flashMode = parameters.getFlashMode();
-    Log.i(TAG, "Flash mode: " + flashMode);
-    Log.i(TAG, "Flash modes: " + flashModes);
     if (!Parameters.FLASH_MODE_TORCH.equals(flashMode)) {
       // Turn on the flash
       if (flashModes.contains(Parameters.FLASH_MODE_TORCH)) {
@@ -132,8 +129,6 @@ public class Torch extends Activity {
       return;
     }
 
-    Log.i(TAG, "Flash mode: " + flashMode);
-    Log.i(TAG, "Flash modes: " + flashModes);
     if (!Parameters.FLASH_MODE_OFF.equals(flashMode)) {
       // Turn off the flash
       if (flashModes.contains(Parameters.FLASH_MODE_OFF)) {
@@ -163,20 +158,15 @@ public class Torch extends Activity {
 
   private void startWakeLock() {
     if (wakeLock == null) {
-      Log.d(TAG, "wakeLock is null, getting a new WakeLock");
       PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-      Log.d(TAG, "PowerManager acquired");
       wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TAG);
-      Log.d(TAG, "WakeLock set");
     }
     wakeLock.acquire();
-    Log.d(TAG, "WakeLock acquired");
   }
 
   private void stopWakeLock() {
     if (wakeLock != null) {
       wakeLock.release();
-      Log.d(TAG, "WakeLock released");
     }
   }
 
@@ -186,19 +176,16 @@ public class Torch extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
     button = findViewById(R.id.button);
-    Log.i(TAG, "onCreate");
   }
 
   @Override
   public void onRestart() {
     super.onRestart();
-    Log.i(TAG, "onRestart");
   }
 
   @Override
   public void onStart() {
     super.onStart();
-    Log.i(TAG, "onStart");
     getCamera();
     startPreview();
     turnLightOn();
@@ -207,13 +194,11 @@ public class Torch extends Activity {
   @Override
   public void onResume() {
     super.onResume();
-    Log.i(TAG, "onResume");
   }
 
   @Override
   public void onPause() {
     super.onPause();
-    Log.i(TAG, "onPause");
   }
 
   @Override
@@ -224,7 +209,6 @@ public class Torch extends Activity {
       mCamera.release();
       mCamera = null;
     }
-    Log.i(TAG, "onStop");
   }
 
   @Override
@@ -235,6 +219,5 @@ public class Torch extends Activity {
       stopPreview();
       mCamera.release();
     }
-    Log.i(TAG, "onDestroy");
   }
 }
