@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.colinmcdonough.android.torch;
+package com.colinmcdonough.android.torchics;
 
 import java.io.IOException;
 import java.util.List;
@@ -73,7 +73,7 @@ public class Torch extends Activity implements Eula.OnEulaAgreedTo, SurfaceHolde
       try {
         mCamera = Camera.open();
       } catch (RuntimeException e) {
-        Log.i(TAG, "Camera.open() failed: " + e.getMessage());
+        Log.e(TAG, "Camera.open() failed: " + e.getMessage());
       }
     }
   }

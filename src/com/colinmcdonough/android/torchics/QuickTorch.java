@@ -1,4 +1,4 @@
-package com.colinmcdonough.android.torch;
+package com.colinmcdonough.android.torchics;
 
 import android.app.Activity;
 import android.content.Intent;
